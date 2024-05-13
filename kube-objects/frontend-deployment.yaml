@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  selector:
+    matchLabels:
+      app: auth-web
+      tier: frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: auth-web
+        tier: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: holyjack/auth-web-frontend:1.0.0
+          imagePullPolicy: Always
+          ports: 
+          - name: http
+            containerPort: 8080
